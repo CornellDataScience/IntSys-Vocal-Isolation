@@ -1,0 +1,6 @@
+[submodule "Wave-U-Net"]
+	path = Wave-U-Net
+	url = https://github.com/yuzhshen/Wave-U-Net
+[submodule "SVSGan"]
+	path = SVSGan
+	url = https://github.com/bayoumi17m/SVSGan.git
