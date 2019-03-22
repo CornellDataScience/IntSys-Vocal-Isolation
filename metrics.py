@@ -32,7 +32,7 @@ def load_audio(filepath, sr=METRICS_SAMPLE_RATE, is_mono=True):
         loaded_audio = np.swapaxes(loaded_audio, 0, 1)
     return loaded_audio
 
-def compute_results_from_directory(dirpath, estimated_suffix):
+def compute_results_from_directory(dirpath, estimated_suffix, true_suffix):
     estimated_filenames, true_filenames = [], []
     for filename in sorted(os.listdir(dirpath)):
         if filename.rfind('.') == -1:
@@ -40,7 +40,7 @@ def compute_results_from_directory(dirpath, estimated_suffix):
         file_title = filename[:filename.rfind('.')]
         if file_title[-len(estimated_suffix):] == estimated_suffix:
             estimated_filenames.append(filename)
-        else:
+        elif file_title[-len(true_suffix):] == true_suffix:
             true_filenames.append(filename)
 
     estimated_waveforms = [load_audio(os.path.join(dirpath,f)) for f in estimated_filenames]
@@ -54,3 +54,5 @@ def compute_results_from_directory(dirpath, estimated_suffix):
         sdr, isr, sir, sar = float(all_sdr[i]), float(all_isr[i]), float(all_sir[i]), float(all_sar[i])
         print(estimated_filenames[i])
         print('SDR: {:.3f} \t ISR: {:.3f} \t SIR {:.3f} \t SIR: {:.3f}'.format(sdr, isr, sir, sar))
+
+compute_results_from_directory('/Users/zhao/Downloads/test_metrics','estimate', 'true')
