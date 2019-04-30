@@ -53,6 +53,9 @@ def compute_results_from_directory(dirpath, estimated_suffix, true_suffix):
         # Edit the following logic to take windows into account if windows are ever used.
         sdr, isr, sir, sar = float(all_sdr[i]), float(all_isr[i]), float(all_sir[i]), float(all_sar[i])
         print(estimated_filenames[i])
-        print('SDR: {:.3f} \t ISR: {:.3f} \t SIR {:.3f} \t SIR: {:.3f}'.format(sdr, isr, sir, sar))
+        print('SDR: {:.3f} \t ISR: {:.3f} \t SIR {:.3f} \t SAR: {:.3f}'.format(sdr, isr, sir, sar))
 
-compute_results_from_directory('/Users/zhao/Downloads/test_metrics','estimate', 'true')
+    return estimated_filenames, all_sdr, all_isr, all_sir, all_sar
+
+if __name___ == '__main__':
+    compute_results_from_directory('/Users/zhao/Downloads/test_metrics','estimate', 'true')
